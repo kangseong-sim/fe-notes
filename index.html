@@ -187,7 +187,8 @@ mark{background:color-mix(in srgb,var(--accent) 26%,transparent);color:inherit;b
 .cl{display:block;--lh:24px;line-height:24px;padding:0 16px;min-height:24px;white-space:pre-wrap;overflow-wrap:anywhere}
 .t-kw{color:var(--kw)} .t-fn{color:var(--fn)} .t-str{color:var(--str)} .t-tag{color:var(--tag)} .t-num{color:var(--num)} .t-cm{color:var(--cm);font-style:italic} .t-at{color:var(--attr)}
 .file table{display:block;overflow-x:auto;border-collapse:collapse;margin:14px 0;font-size:14.5px;line-height:1.6;max-width:100%}
-.file th,.file td{border-bottom:1px solid var(--line2);padding:7px 14px 7px 0;text-align:left;vertical-align:top;--lh:23.2px}
+.file th,.file td{border-bottom:1px solid var(--line2);padding:7px 14px 7px 0;text-align:left;vertical-align:top;--lh:23.2px;overflow-wrap:break-word;word-break:keep-all}
+.file td:first-child,.file th:first-child{white-space:nowrap}
 .file th{color:var(--sub);font-weight:600;font-size:12.5px;line-height:23.2px;border-bottom-color:var(--line)}
 .file blockquote{margin:14px 0;padding:8px 16px;border-left:2px solid var(--line);color:var(--quote);border-radius:0 6px 6px 0}
 .file blockquote p{margin:2px 0}
