@@ -377,8 +377,9 @@ body.p-dragging *{cursor:row-resize!important}
   .file{padding-top:calc(var(--pathh) + env(safe-area-inset-top,0px) + 16px);padding-bottom:calc(var(--shh,0px) + 40px)}
 
   /* 하단 바 */
-  .totop{display:inline-flex;align-items:center;position:fixed;right:16px;bottom:calc(var(--barh) + var(--shh,0px) + 16px);z-index:25;height:40px;padding:0 16px;border-radius:20px;background:var(--side);color:var(--fg);font-size:13.5px;font-weight:500;box-shadow:0 0 0 1px var(--line),0 8px 20px rgba(0,0,0,.28);opacity:0;translate:0 8px;pointer-events:none;transition-property:opacity,translate,bottom;transition-duration:.2s;transition-timing-function:var(--ease)}
+  .totop{display:inline-flex;align-items:center;position:fixed;right:16px;bottom:calc(var(--barh) + var(--shh,0px) + 16px);z-index:25;justify-content:center;width:44px;height:44px;padding:0;border-radius:50%;background:var(--side);color:var(--fg);box-shadow:0 0 0 1px var(--line),0 8px 20px rgba(0,0,0,.28);opacity:0;translate:0 8px;pointer-events:none;transition-property:opacity,translate,bottom;transition-duration:.2s;transition-timing-function:var(--ease)}
   .totop::after{content:"";position:absolute;inset:-4px}
+  .totop svg{width:18px;height:18px;display:block}
   .totop.show{opacity:1;translate:0 0;pointer-events:auto}
   .totop:active{scale:.96}
   body.side-open .totop{opacity:0;pointer-events:none}
@@ -547,7 +548,7 @@ body.p-dragging *{cursor:row-resize!important}
     <button id="themeBtn" title="테마 전환">라이트</button>
   </footer>
 </div>
-<button class="totop" id="toTop" type="button" aria-label="맨 위로" tabindex="-1">맨 위로</button>
+<button class="totop" id="toTop" type="button" aria-label="맨 위로" title="맨 위로" tabindex="-1"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3.5M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <nav class="mbar" id="mbar" aria-label="하단 도구">
   <button class="press" data-m="toc" aria-pressed="false" aria-controls="side">목차</button>
   <button class="press" data-m="blank" aria-pressed="false" aria-controls="panel" title="빈칸 옵션 열기">빈칸<span class="st" id="mBlankSt">끔</span></button>
