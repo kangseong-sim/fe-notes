@@ -149,7 +149,7 @@ mark{background:color-mix(in srgb,var(--accent) 26%,transparent);color:inherit;b
 .scroller{overflow-y:auto;overflow-x:hidden;min-width:0;overscroll-behavior:contain}
 
 /* document = 마크다운 미리보기 */
-.file{--gut:64px;--row:28.8px;--lh:28.8px;position:relative;isolation:isolate;padding:28px 48px 45vh var(--gut);max-width:calc(var(--gut) + 1120px);font-size:16px;line-height:1.8;overflow-wrap:anywhere}
+.file{--gut:64px;--row:28.8px;--lh:28.8px;position:relative;isolation:isolate;padding:28px 48px 96px var(--gut);max-width:calc(var(--gut) + 1120px);font-size:16px;line-height:1.8;overflow-wrap:anywhere}
 .ln::before{content:"";position:absolute;left:0;right:0;z-index:-1;height:var(--lh);padding-right:calc(100% - var(--gut) + 18px);text-align:right;font:400 11px/1 "JetBrains Mono",monospace;line-height:var(--lh);color:var(--lnum);font-variant-numeric:tabular-nums;letter-spacing:0;text-indent:0;pointer-events:none;user-select:none;white-space:nowrap;background-repeat:no-repeat}
 .file h3.ln::before{content:"L" attr(data-ln)}
 .ln.cur::before{background-color:var(--cur)}
@@ -337,7 +337,7 @@ body.p-dragging *{cursor:row-resize!important}
   .explorer{position:fixed;z-index:20;left:0;top:36px;bottom:24px;width:min(300px,calc(100vw - 48px));transform:translateX(calc(-100% - 60px));transition:transform .22s cubic-bezier(.2,0,0,1);box-shadow:8px 0 24px rgba(0,0,0,.35)}
   body.side-open .explorer{transform:none}
   body.side-open #scrim{display:block;position:fixed;inset:36px 0 24px 0;z-index:15;background:rgba(0,0,0,.35)}
-  .file{--gut:16px;--row:27.9px;padding:16px 16px 45vh var(--gut);font-size:15.5px}
+  .file{--gut:16px;--row:27.9px;padding:16px 16px 64px var(--gut);font-size:15.5px}
   .ln::before{padding-right:0}
   .file h3.ln::before{content:""}
   .ln.del::before{background-position:4px 0}
@@ -373,7 +373,7 @@ body.p-dragging *{cursor:row-resize!important}
   .mpath .pt{flex:none;color:var(--sub)}
   .mpath i{font-style:normal;color:var(--faint);flex:none}
   .mpath b{font-weight:500;color:var(--fg);overflow:hidden;text-overflow:ellipsis;min-width:0}
-  .file{padding-top:calc(var(--pathh) + env(safe-area-inset-top,0px) + 16px);padding-bottom:max(45vh,calc(var(--shh,0px) + 40px))}
+  .file{padding-top:calc(var(--pathh) + env(safe-area-inset-top,0px) + 16px);padding-bottom:calc(var(--shh,0px) + 40px)}
 
   /* 하단 바 */
   .mbar{display:flex;gap:4px;position:fixed;left:0;right:0;bottom:0;z-index:30;height:var(--barh);padding:6px 8px env(safe-area-inset-bottom,0px);background:var(--side);box-shadow:0 -1px 0 var(--line2)}
