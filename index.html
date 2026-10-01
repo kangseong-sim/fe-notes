@@ -109,6 +109,7 @@ mark{background:color-mix(in srgb,var(--accent) 26%,transparent);color:inherit;b
 .tab .x:hover{background:var(--hover);color:var(--fg);opacity:1}
 .tab .dot{width:6px;height:6px;border-radius:50%;flex:none}
 .dot[data-v="no"]{background:var(--mod)} .dot[data-v="mid"]{background:var(--mid)} .dot[data-v="ok"]{background:var(--ok)}
+.totop{display:none}
 .expbtn{position:relative;display:inline-grid;place-items:center;width:28px;height:28px;margin-left:-6px;border-radius:6px;color:var(--sub);flex:none;transition-property:color,background-color;transition-duration:.15s;transition-timing-function:cubic-bezier(.2,0,0,1)}
 .expbtn::after{content:"";position:absolute;inset:-6px}
 .expbtn:hover{color:var(--fg);background:var(--hover)}
@@ -376,6 +377,11 @@ body.p-dragging *{cursor:row-resize!important}
   .file{padding-top:calc(var(--pathh) + env(safe-area-inset-top,0px) + 16px);padding-bottom:calc(var(--shh,0px) + 40px)}
 
   /* 하단 바 */
+  .totop{display:inline-flex;align-items:center;position:fixed;right:16px;bottom:calc(var(--barh) + var(--shh,0px) + 16px);z-index:25;height:40px;padding:0 16px;border-radius:20px;background:var(--side);color:var(--fg);font-size:13.5px;font-weight:500;box-shadow:0 0 0 1px var(--line),0 8px 20px rgba(0,0,0,.28);opacity:0;translate:0 8px;pointer-events:none;transition-property:opacity,translate,bottom;transition-duration:.2s;transition-timing-function:var(--ease)}
+  .totop::after{content:"";position:absolute;inset:-4px}
+  .totop.show{opacity:1;translate:0 0;pointer-events:auto}
+  .totop:active{scale:.96}
+  body.side-open .totop{opacity:0;pointer-events:none}
   .mbar{display:flex;gap:4px;position:fixed;left:0;right:0;bottom:0;z-index:30;height:var(--barh);padding:6px 8px env(safe-area-inset-bottom,0px);background:var(--side);box-shadow:0 -1px 0 var(--line2)}
   .mbar button{flex:1 1 0;min-width:0;height:44px;display:flex;align-items:center;justify-content:center;gap:5px;border-radius:10px;font-size:14.5px;font-weight:500;color:var(--sub);white-space:nowrap;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
   .mbar button[aria-pressed="true"]{color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
@@ -541,6 +547,7 @@ body.p-dragging *{cursor:row-resize!important}
     <button id="themeBtn" title="테마 전환">라이트</button>
   </footer>
 </div>
+<button class="totop" id="toTop" type="button" aria-label="맨 위로" tabindex="-1">맨 위로</button>
 <nav class="mbar" id="mbar" aria-label="하단 도구">
   <button class="press" data-m="toc" aria-pressed="false" aria-controls="side">목차</button>
   <button class="press" data-m="blank" aria-pressed="false" aria-controls="panel" title="빈칸 옵션 열기">빈칸<span class="st" id="mBlankSt">끔</span></button>
@@ -1499,6 +1506,17 @@ body.p-dragging *{cursor:row-resize!important}
     el.addEventListener('pointerup', sdUp);
     el.addEventListener('pointercancel', sdUp);
   });
+
+  // 맨 위로(모바일): 한 화면 넘게 내려가면 보임
+  const toTop = $('#toTop');
+  scroller.addEventListener('scroll', () => {
+    const show = mobile() && scroller.scrollTop > scroller.clientHeight;
+    toTop.classList.toggle('show', show); toTop.tabIndex = show ? 0 : -1;
+  }, {passive:true});
+  toTop.onclick = () => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    scroller.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  };
 
   // 경로 줄: 아래로 스크롤하면 숨고 위로 스크롤하면 나타남
   let pathY = 0, pathAcc = 0;
